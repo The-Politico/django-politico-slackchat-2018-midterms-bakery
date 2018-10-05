@@ -1,7 +1,5 @@
 from django.urls import path
 
-from .views import Home
+from .views import Endpoint
 
-urlpatterns = [
-    path('', Home.as_view(), name='slackchatbakery-home'),
-]
+urlpatterns = [path("", Endpoint.as_view(), name="slackchatbakery-endpoint")]

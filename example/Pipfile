@@ -9,11 +9,17 @@ python_version = "3.6"
 [packages]
 pytest = "*"
 "flake8" = "*"
-django = ">=2.0"
 djangorestframework = "*"
 "dj-database-url" = "*"
 "psycopg2" = "*"
 "slackchatbakery" = {path = "./..", editable = true}
 "ed0a5ba" = {path = "./..", editable = true}
+django-slackchat-serializer = "*"
+celery = "*"
+redis = "*"
+django-politico-slackchat-renderer = "*"
+django = "==2.0.4"
+"boto3" = "*"
+django-storages = "*"
 
 [dev-packages]
