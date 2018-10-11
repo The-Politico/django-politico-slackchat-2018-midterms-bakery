@@ -3,5 +3,5 @@ from .base import BaseReaction
 
 class HousePin(BaseReaction):
     name = "slackchatbakery-house-pin"
-    reaction = "pushpin"
+    arg = "house-pin"
     path = "stubs/house/pinned"

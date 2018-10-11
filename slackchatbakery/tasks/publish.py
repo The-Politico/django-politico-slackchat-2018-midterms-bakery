@@ -2,7 +2,7 @@ import gc
 import logging
 
 from celery import Task, shared_task
-from slackchatbakery.views import Channel, State, StateBody, Body, reactions
+from slackchatbakery.views import Channel, State, StateBody, Body, arguments
 from slackchatbakery.utils.races import (
     get_states_in_channel,
     get_bodies_in_channel,
@@ -38,8 +38,8 @@ def publish_slackchat(channel_id, publish_stubs=False):
         for body in bodies:
             publish_body(channel_data, body)
 
-        for reaction in reactions.keys():
-            publish_reaction(channel_data, reaction)
+        for argument in arguments.keys():
+            publish_argument(channel_data, argument)
 
     # Garbage collect after run.
     gc.collect()
@@ -73,11 +73,11 @@ def publish_body(channel, body):
 
 
 @shared_task(acks_late=True, base=LoggedTask)
-def publish_reaction(channel, reaction):
+def publish_argument(channel, argument):
     kwargs = {"channel": channel}
 
-    if reaction in reactions:
-        view = reactions[reaction](**kwargs)
+    if argument in arguments:
+        view = arguments[argument](**kwargs)
         view.publish_serialized_data(**kwargs)
 
     # Garbage collect after run.

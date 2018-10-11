@@ -10,9 +10,7 @@ from slackchatbakery.conf import settings
 
 class StaticsPublishingMixin(object):
     """
-    Handles publishing templates, serialized context and JS/CSS bundles to S3.
-    Bundles are published to a directory at paths with this pattern:
-    election-results/2018/live-analysis/midterms/cdn/{bundle_file}
+    Handles publishing serialized context to S3.
     """
 
     def get_request(self, production=False, subpath=""):

@@ -152,4 +152,4 @@ venv.bak/
 tmp/
 
 # Custom
-example/exampleapp/slackchat/users
+example/exampleapp/slackchat/users/

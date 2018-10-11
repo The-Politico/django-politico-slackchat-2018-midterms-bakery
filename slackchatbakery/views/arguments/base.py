@@ -2,8 +2,13 @@ from ..base import BaseView
 
 
 class BaseReaction(BaseView):
+    """
+    Base class to extend in order to create unique lists based on arguments.
+    Make sure to setup your arguments in the serializer:
+    https://django-slackchat-serializer.readthedocs.io/en/latest/models.html#argument
+    """
     name = None
-    reaction = None
+    arg = None
     path = "stubs"
 
     def get_publish_path(self):
@@ -15,12 +20,8 @@ class BaseReaction(BaseView):
     def filter_messages(self, messages):
         return messages
 
-    def message_has_reactions(self, message):
-        for reaction in message.get("reactions", []):
-            if reaction.get("reaction", "") == self.reaction:
-                return True
-
-        return False
+    def message_has_arg(self, message):
+        return self.arg in message.get("args", [])
 
     def get_messages(self):
         messages = self.channel["messages"]
@@ -29,5 +30,5 @@ class BaseReaction(BaseView):
         return [
             message
             for message in filtered
-            if self.message_has_reactions(message)
+            if self.message_has_arg(message)
         ]
