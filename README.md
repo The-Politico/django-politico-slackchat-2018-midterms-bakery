@@ -106,7 +106,7 @@ Want to not worry about it? Use the shortcut make command.
   ```
 
 ##### Making Argument Routes
-The app comes preloaded with a base class that makes creating new argument-based datasets easy. Start by making a new view file in the [`slackchatbakery/views/arguments`]('slackchatbakery/views/arguments') directory.
+The app comes preloaded with a base class that makes creating new argument-based datasets easy. Start by making a new view file in the [`slackchatbakery/views/arguments`](slackchatbakery/views/arguments) directory.
 
 Paste the following:
 ```python
@@ -148,4 +148,4 @@ class ExampleArg(BaseReaction):
 ```
 *Note that this extra filter step is run BEFORE messages get filtered for the presence of the arg.*
 
-Before you start writing complex filters though make sure to check the `races` utility found in the [`slackchatbakery/utils/races`]('slackchatbakery/utils/races') directory. It comes with useful functions like `message_in_body` and `message_in_state` which take a message and some more data as an argument and return a boolean.
+Before you start writing complex filters though make sure to check the `races` utility found in the [`slackchatbakery/utils/races`](slackchatbakery/utils/races) directory. It comes with useful functions like `message_in_body` and `message_in_state` which take a message and some more data as an argument and return a boolean.
