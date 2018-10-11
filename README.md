@@ -143,7 +143,7 @@ class ExampleArg(BaseReaction):
         return [
             message
             for message in messages
-            if message["content"].startswith('T')
+            if message["content"].startswith("T")
         ]
 ```
 *Note that this extra filter step is run BEFORE messages get filtered for the presence of the arg.*
