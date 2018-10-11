@@ -143,6 +143,9 @@ venv.bak/
 # mkdocs documentation
 /site
 
+# redis
+dump.rdb
+
 # mypy
 .mypy_cache/
 
