@@ -1,7 +1,7 @@
 from ..base import BaseView
 
 
-class BaseReaction(BaseView):
+class BaseArgument(BaseView):
     """
     Base class to extend in order to create unique lists based on arguments.
     Make sure to setup your arguments in the serializer:

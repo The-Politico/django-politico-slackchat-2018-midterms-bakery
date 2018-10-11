@@ -1,7 +1,7 @@
-from .base import BaseReaction
+from .base import BaseArgument
 
 
-class HousePin(BaseReaction):
+class HousePin(BaseArgument):
     name = "slackchatbakery-house-pin"
     arg = "house-pin"
     path = "stubs/house/pinned"
