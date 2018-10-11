@@ -122,7 +122,7 @@ class ArgumentViewName(BaseArgument):
 
 Fill out the view data with the arg that messages in this feed should have as well as the path to which you want to bake data. The path you put here will be directly appended to the `SLACKCHATBAKERY_S3_STATIC_ROOT` + `SLACKCHATBAKERY_S3_UPLOAD_ROOT`. We recommend putting any subsets in the `stubs` directory.
 
-If you create a new route make sure to add it to this README under [`Argument Data`](#argument-data) in `Routes` with a brief description of what it contains.
+If you create a new route make sure to add it to this README under `Argument Data`(#argument-data) with a brief description of what it contains.
 
 ###### Where do message args comes from?
 Message args will be added in the serializer. See the docs for [reaction-based args](https://django-slackchat-serializer.readthedocs.io/en/latest/serialization.html#args) and [content-based args](https://django-slackchat-serializer.readthedocs.io/en/latest/serialization.html#custom-content-templates) for more on this.
