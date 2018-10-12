@@ -17,6 +17,9 @@ class BaseView(DetailView, StaticsPublishingMixin):
         """OVERWRITE this method to return publish path for a view."""
         return ""
 
+    def get_users(self):
+        return self.channel["users"]
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # In self.publish_template, we set a querystring to prod to signal

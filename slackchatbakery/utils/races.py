@@ -122,6 +122,14 @@ def get_body_from_division(division):
         return "house"
 
 
+def get_state_from_race(race):
+    """
+    Returns a state postal code from a given race Id.
+    (e.g. "TX-04" returns "TX").
+    """
+    return race.split("-")[0].upper()
+
+
 def filter_races_by_body(races, body):
     """
     Filters a dictionary of races for only those in a given body. Removes keys
@@ -134,6 +142,18 @@ def filter_races_by_body(races, body):
     return filtered
 
 
+def filter_races_by_state(races, state):
+    """
+    Filters a dictionary of races for only those in a given state. Uses state
+    slugs. Removes keys that are not part of the body.
+    """
+    filtered = {}
+    for race in races:
+        if get_state_from_race(race) == slug_to_postal(state):
+            filtered[race] = races[race]
+    return filtered
+
+
 def group_by_race(messages):
     """
     Groups messages by the races they're tagged with. If a message is tagged
@@ -141,7 +161,6 @@ def group_by_race(messages):
     total number of entires in the output dict will not necesarily equal the
     the number of entries in the original list.
     """
-    from pprint import pprint
     d = {}
     for message in messages:
         races = get_races_from_message(message)
@@ -153,9 +172,14 @@ def group_by_race(messages):
     return d
 
 
-def filter_body_and_group_by_race(messages, body):
+def filter_and_group_by_race(messages, **kwargs):
     """
     Filters and groups a message list into a dictionary with only races in a
     given body.
     """
-    return filter_races_by_body(group_by_race(messages), body)
+    output = group_by_race(messages)
+    if(kwargs.get('body', None)):
+        output = filter_races_by_body(output, kwargs["body"])
+    if(kwargs.get('state', None)):
+        output = filter_races_by_state(output, kwargs["state"])
+    return output

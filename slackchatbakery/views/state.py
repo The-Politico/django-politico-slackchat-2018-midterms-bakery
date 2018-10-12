@@ -1,6 +1,6 @@
 from .base import BaseView
 from slackchatbakery.utils.races import (
-    filter_body_and_group_by_race,
+    filter_and_group_by_race,
     message_in_state,
 )
 
@@ -15,7 +15,10 @@ class State(BaseView):
     def get_serialized_data(self, **kwargs):
         self.channel = kwargs.get("channel")
         self.state = kwargs.get("state").lower()
-        return self.get_races()
+        return {
+            "users": self.get_users(),
+            "messages": self.get_races()
+        }
 
     def get_races(self):
         messages = self.channel["messages"]
@@ -26,9 +29,21 @@ class State(BaseView):
         ]
 
         return {
-            "house": filter_body_and_group_by_race(filtered, "house"),
-            "senate": filter_body_and_group_by_race(filtered, "senate"),
-            "governor": filter_body_and_group_by_race(filtered, "governor"),
+            "house": filter_and_group_by_race(
+                filtered,
+                body="house",
+                state=self.state
+            ),
+            "senate": filter_and_group_by_race(
+                filtered,
+                body="senate",
+                state=self.state
+            ),
+            "governor": filter_and_group_by_race(
+                filtered,
+                body="governor",
+                state=self.state
+            ),
         }
 
 

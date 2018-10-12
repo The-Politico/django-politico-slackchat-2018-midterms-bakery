@@ -15,7 +15,10 @@ class BaseArgument(BaseView):
         return self.path
 
     def get_serialized_data(self, **kwargs):
-        return self.get_messages()
+        return {
+            "users": self.get_users(),
+            "messages": self.get_messages()
+        }
 
     def filter_messages(self, messages):
         return messages
