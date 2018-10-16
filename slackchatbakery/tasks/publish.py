@@ -2,11 +2,7 @@ import gc
 import logging
 
 from celery import Task, shared_task
-from slackchatbakery.views import Channel, State, StateBody, Body, arguments
-from slackchatbakery.utils.races import (
-    get_states_in_channel,
-    get_bodies_in_channel,
-)
+from slackchatbakery.views import Channel, State, Body, arguments
 
 logger = logging.getLogger(__name__)
 
@@ -24,22 +20,13 @@ class LoggedTask(Task):
 
 
 @shared_task(acks_late=True, base=LoggedTask)
-def publish_slackchat(channel_id, publish_stubs=False):
+def publish_slackchat(channel_id):
     kwargs = {"channel_id": channel_id}
     view = Channel(**kwargs)
     channel_data = view.publish_serialized_data(**kwargs)
 
-    if publish_stubs:
-        states = get_states_in_channel(channel_data["messages"])
-        for state in states:
-            publish_state(channel_data, state)
-
-        bodies = get_bodies_in_channel(channel_data["messages"])
-        for body in bodies:
-            publish_body(channel_data, body)
-
-        for argument in arguments.keys():
-            publish_argument(channel_data, argument)
+    for argument in arguments.keys():
+        publish_argument(channel_data, argument)
 
     # Garbage collect after run.
     gc.collect()
@@ -51,11 +38,6 @@ def publish_state(channel, state):
 
     all_view = State(**kwargs)
     all_view.publish_serialized_data(**kwargs)
-
-    for body in BODIES:
-        body_kwargs = {**kwargs, **{"body": body}}
-        body_view = StateBody(**body_kwargs)
-        body_view.publish_serialized_data(**body_kwargs)
 
     # Garbage collect after run.
     gc.collect()

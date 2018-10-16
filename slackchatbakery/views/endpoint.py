@@ -16,7 +16,6 @@ class Endpoint(APIView):
     ]
 
     def get(self, request, format=None):
-        print("test")
         return Response(200)
 
     def post(self, request, format=None):
@@ -45,8 +44,8 @@ class Endpoint(APIView):
 
         if chat_type == "2018-midterms":
             if request_type == "update_notification":
-                publish_slackchat.delay(channel, publish_stubs=True)
+                publish_slackchat.delay(channel)
             if request_type == "republish_request":
-                publish_slackchat.delay(channel, publish_stubs=True)
+                publish_slackchat.delay(channel)
 
         return Response(status=status.HTTP_200_OK)

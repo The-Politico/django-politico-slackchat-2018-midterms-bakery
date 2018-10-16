@@ -14,7 +14,7 @@ djangorestframework = "*"
 "psycopg2" = "*"
 "slackchatbakery" = {path = "./..", editable = true}
 "ed0a5ba" = {path = "./..", editable = true}
-django-slackchat-serializer = "*"
+django-slackchat-serializer = "==0.5.1"
 celery = "*"
 redis = "*"
 django-politico-slackchat-renderer = "*"
