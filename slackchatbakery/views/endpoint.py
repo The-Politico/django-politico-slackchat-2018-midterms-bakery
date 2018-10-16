@@ -44,8 +44,8 @@ class Endpoint(APIView):
 
         if chat_type == "2018-midterms":
             if request_type == "update_notification":
-                publish_slackchat.delay(channel)
+                publish_slackchat.delay(channel, publish_args=True)
             if request_type == "republish_request":
-                publish_slackchat.delay(channel)
+                publish_slackchat.delay(channel, publish_args=True)
 
         return Response(status=status.HTTP_200_OK)

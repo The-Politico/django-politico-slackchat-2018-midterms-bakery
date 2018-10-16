@@ -20,13 +20,14 @@ class LoggedTask(Task):
 
 
 @shared_task(acks_late=True, base=LoggedTask)
-def publish_slackchat(channel_id):
+def publish_slackchat(channel_id, publish_args=False):
     kwargs = {"channel_id": channel_id}
     view = Channel(**kwargs)
     channel_data = view.publish_serialized_data(**kwargs)
 
-    for argument in arguments.keys():
-        publish_argument(channel_data, argument)
+    if(publish_args):
+        for argument in arguments.keys():
+            publish_argument(channel_data, argument)
 
     # Garbage collect after run.
     gc.collect()

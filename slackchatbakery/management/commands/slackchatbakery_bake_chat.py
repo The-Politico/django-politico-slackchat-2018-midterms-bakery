@@ -14,8 +14,15 @@ class Command(BaseCommand):
             help="Also publish state pages.",
         )
 
+        parser.add_argument(
+            "--arg",
+            action="store_true",
+            dest="arg",
+            help="Also publish args pages.",
+        )
+
     def handle(self, *args, **options):
-        publish_slackchat(options["channel"])
+        publish_slackchat(options["channel"], publish_args=options["arg"])
 
         if(options["states"]):
             call_command("slackchatbakery_bake_all_states", options["channel"])
