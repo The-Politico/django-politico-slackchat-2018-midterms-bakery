@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7af5b35356e78d93438b0ccdad0ebccff9f1d0e67cd18f16e8be48666c143171"
+            "sha256": "e0dec371f318d70c373a32c02fbe4ac49ff853ee618ac0e148b8759d1746d023"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -45,18 +45,18 @@
         },
         "boto3": {
             "hashes": [
-                "sha256:c1d59ac76328892d07eeca5888dffdfa278d0e8a257e1e988c6e0b41be5b58de",
-                "sha256:d1046dcf0958666f775612cb0c4b686a1d7fa35744f77471a1b798259771bc3b"
+                "sha256:941c46528cc2460423fd217068660a0814730c5d78a6a6673f61c5b4fa398a05",
+                "sha256:ccbf7957711fd0621a45f699d550a1a7e1f2ba5e57418552e49ff63efffcadfd"
             ],
             "index": "pypi",
-            "version": "==1.9.24"
+            "version": "==1.9.25"
         },
         "botocore": {
             "hashes": [
-                "sha256:11514364cf7243822e8035b69f85512b0f9623a182867aedd79521bebc88fef5",
-                "sha256:bc93eb62043b21e48b0515380867408fd0c63227d7dffacbbd443f6daa772a53"
+                "sha256:b221dedd255d0ba995b54ecdce04d1d539dbf682b48c15cdd0d84bff15f9f3c7",
+                "sha256:d93513ad498ec44a17bcbc00de39036934f865417ff4222211be08855b4ed0cd"
             ],
-            "version": "==1.12.24"
+            "version": "==1.12.25"
         },
         "celery": {
             "hashes": [
@@ -114,11 +114,11 @@
         },
         "django-slackchat-serializer": {
             "hashes": [
-                "sha256:35d962cd6326c331f754042043d85d7d1c4b70dc9acea02e36c0bb2fb89e7349",
-                "sha256:cc98764b9c54ac98011bca2e4a2e1fedb26f97602145aeea960da491d3fec674"
+                "sha256:ad6b3fccef2a02e391c0cfcd11a20f36d8e8dd593e6c13fd2b0cce821978c6b0",
+                "sha256:f936e90eb0249201b3de033a5f6b108d721a6e205c9e310b5903fbcae639fe22"
             ],
             "index": "pypi",
-            "version": "==0.5.1"
+            "version": "==0.5.3"
         },
         "django-storages": {
             "hashes": [
@@ -334,11 +334,11 @@
         },
         "pytest": {
             "hashes": [
-                "sha256:7e258ee50338f4e46957f9e09a0f10fb1c2d05493fa901d113a8dafd0790de4e",
-                "sha256:9332147e9af2dcf46cd7ceb14d5acadb6564744ddff1fe8c17f0ce60ece7d9a2"
+                "sha256:10e59f84267370ab20cec9305bafe7505ba4d6b93ecbf66a1cce86193ed511d5",
+                "sha256:8c827e7d4816dfe13e9329c8226aef8e6e75d65b939bc74fda894143b6d1df59"
             ],
             "index": "pypi",
-            "version": "==3.8.2"
+            "version": "==3.9.1"
         },
         "python-dateutil": {
             "hashes": [

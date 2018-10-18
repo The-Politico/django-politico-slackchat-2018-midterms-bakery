@@ -1,3 +1,7 @@
-from .house_pin import HousePin
+from .homepage import Homepage
+from .notification import Notification
 
-arguments = {HousePin.name: HousePin}
+arguments = {
+    Homepage.name: Homepage,
+    Notification.name: Notification,
+}
