@@ -18,7 +18,7 @@ django-slackchat-serializer = "==0.5.3"
 celery = "*"
 redis = "*"
 django-politico-slackchat-renderer = "*"
-django = "==2.0.4"
+django = "==2.0.8."
 "boto3" = "*"
 django-storages = "*"
 
