@@ -19,7 +19,11 @@ class Endpoint(APIView):
         return Response(200)
 
     def post(self, request, format=None):
-        from slackchatbakery.celery import publish_slackchat
+        from slackchatbakery.celery import (
+            publish_slackchat,
+            publish_all_states,
+            render_chat,
+        )
 
         data = request.data
         request_token = data.get("token", None)
@@ -42,10 +46,14 @@ class Endpoint(APIView):
         except KeyError:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
+        print(request_type)
+
         if chat_type == "2018-midterms":
             if request_type == "update_notification":
                 publish_slackchat.delay(channel, publish_args=True)
             if request_type == "republish_request":
                 publish_slackchat.delay(channel, publish_args=True)
+                publish_all_states.delay(channel)
+                render_chat.delay()
 
         return Response(status=status.HTTP_200_OK)

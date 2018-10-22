@@ -3,6 +3,7 @@ import logging
 
 from celery import Task, shared_task
 from slackchatbakery.views import Channel, State, Body, arguments
+from slackchatbakery.utils.stater import fips_by_slugs, slug_to_fips
 
 logger = logging.getLogger(__name__)
 
@@ -25,12 +26,26 @@ def publish_slackchat(channel_id, publish_args=False):
     view = Channel(**kwargs)
     channel_data = view.publish_serialized_data(**kwargs)
 
-    if(publish_args):
+    if publish_args:
         for argument in arguments.keys():
             publish_argument(channel_data, argument)
 
     # Garbage collect after run.
     gc.collect()
+
+
+@shared_task(acks_late=True, base=LoggedTask)
+def publish_all_states(channel):
+    kwargs = {"channel_id": channel}
+    view = Channel(**kwargs)
+    channel_data = view.get_serialized_data(**kwargs)
+
+    for state in [
+        slug
+        for slug in fips_by_slugs
+        if slug_to_fips(slug) != "11" and int(slug_to_fips(slug)) <= 56
+    ]:
+        publish_state(channel_data, state)
 
 
 @shared_task(acks_late=True, base=LoggedTask)

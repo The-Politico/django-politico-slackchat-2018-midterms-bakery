@@ -62,4 +62,8 @@ Settings.SLACKCHAT_CHANNEL_ENDPOINT = getattr(
     project_settings, "SLACKCHATBAKERY_SLACKCHAT_CHANNEL_ENDPOINT", ""
 )
 
+Settings.RENDERER_URL = getattr(
+    project_settings, "SLACKCHATBAKERY_RENDERER_URL", ""
+)
+
 settings = Settings

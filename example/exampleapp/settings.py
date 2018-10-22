@@ -117,6 +117,9 @@ SLACKCHATBAKERY_S3_UPLOAD_ROOT = (
 SLACKCHATBAKERY_WEBHOOK_VERIFICATION_TOKEN = os.getenv(
     "SLACKCHAT_VERIFICATION_TOKEN"
 )
+SLACKCHATBAKERY_RENDERER_URL = (
+    "https://uobilewvt0.execute-api.us-east-1.amazonaws.com/Prod/"
+)
 
 ##############
 # Staging S3 #
