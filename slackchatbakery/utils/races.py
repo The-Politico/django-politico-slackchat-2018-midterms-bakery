@@ -5,10 +5,10 @@ def get_races_from_message(message):
     """
     Parses a comma separated list from a Slack message with a kwarg of race.
     """
-    message_kwargs = message.get(
-        "kwargs", {"race": ""}
-    ).get("race", "").lower()
-    races = message_kwargs.replace(' ', '').split(',')
+    message_kwargs = (
+        message.get("kwargs", {"race": ""}).get("race", "").lower()
+    )
+    races = message_kwargs.replace(" ", "").split(",")
     return races
 
 
@@ -58,7 +58,7 @@ def message_has_races(message):
     Checks to see if a message has a race kwarg.
     """
     races = get_races_from_message(message)
-    return len(races) > 0 and races[0] != ''
+    return len(races) > 0 and races[0] != ""
 
 
 def get_states_in_channel(messages):
@@ -172,14 +172,25 @@ def group_by_race(messages):
     return d
 
 
-def filter_and_group_by_race(messages, **kwargs):
+def sort_by_timestamp(messages):
     """
-    Filters and groups a message list into a dictionary with only races in a
-    given body.
+    Sort a group of messages by their timestamp.
+    """
+    return sorted(messages, key=lambda x: x["timestamp"])
+
+
+def filter_sort_and_group_by_race(messages, **kwargs):
+    """
+    Filters, sorts, and groups a message list into a dictionary with only
+    races in a given body or state.
     """
     output = group_by_race(messages)
-    if(kwargs.get('body', None)):
+
+    for race in output:
+        output[race] = sort_by_timestamp(output[race])
+
+    if kwargs.get("body", None):
         output = filter_races_by_body(output, kwargs["body"])
-    if(kwargs.get('state', None)):
+    if kwargs.get("state", None):
         output = filter_races_by_state(output, kwargs["state"])
     return output
