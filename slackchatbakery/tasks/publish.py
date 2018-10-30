@@ -24,7 +24,7 @@ class LoggedTask(Task):
 
 @shared_task(acks_late=True, base=LoggedTask)
 def publish_slackchat(channel_id, publish_args=False):
-    hash = "%032x" % random.getrandbits(128)[0:5]
+    hash = ("%032x" % random.getrandbits(128))[0:5]
     logger.info("Starting task: {0}-{1}".format("publish_slackchat", hash))
     start_time = time.time()
 
@@ -48,7 +48,7 @@ def publish_slackchat(channel_id, publish_args=False):
 
 @shared_task(acks_late=True, base=LoggedTask)
 def publish_all_states(channel):
-    hash = "%032x" % random.getrandbits(128)[0:5]
+    hash = ("%032x" % random.getrandbits(128))[0:5]
     logger.info("Starting task: {0}-{1}".format("publish_all_states", hash))
     start_time = time.time()
 
