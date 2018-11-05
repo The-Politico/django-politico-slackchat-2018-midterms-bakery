@@ -46,8 +46,6 @@ class Endpoint(APIView):
         except KeyError:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        print(request_type)
-
         if chat_type == "2018-midterms":
             if request_type == "update_notification":
                 publish_slackchat.delay(channel, publish_args=True)
